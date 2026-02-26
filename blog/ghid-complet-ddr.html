@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="description" content="Ghid complet DDR (dispozitiv diferențial rezidual) — tipuri AC, A, B, F, selectivitate, cerințe I7-2011 și greșeli frecvente de alegere.">
+<title>Ghid complet DDR — tipuri A, AC, B, F — sub-tensiune.ro</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0a0a;--surface:#111;--card:#161616;--card2:#1c1c1c;--border:#2a2a2a;--border2:#333;--text:#c8c8c8;--muted:#777;--heading:#f5f5f5;--volt:#fbbf24;--volt-dim:rgba(251,191,36,.08);--volt-glow:rgba(251,191,36,.3);--danger:#ef4444;--blue:#38bdf8;--green:#4ade80;--radius:12px;--max-w:760px;--font:'Outfit',sans-serif;--mono:'JetBrains Mono',monospace;}
+*{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
+body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;}
+a{color:var(--volt);text-decoration:none;transition:.2s;}a:hover{color:#fde68a;}
+.hazard-stripe{height:4px;background:repeating-linear-gradient(-45deg,var(--volt) 0,var(--volt) 8px,var(--bg) 8px,var(--bg) 16px);}
+nav{position:sticky;top:0;z-index:999;background:rgba(10,10,10,.92);backdrop-filter:blur(20px) saturate(1.3);border-bottom:1px solid var(--border);}
+.nav-inner{max-width:1120px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:60px;}
+.nav-logo{font-family:var(--mono);font-size:17px;font-weight:700;color:var(--heading);display:flex;align-items:center;gap:10px;letter-spacing:-.3px;}
+.nav-logo .bolt{width:28px;height:28px;background:var(--volt);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:16px;color:#000;}
+.nav-logo .dash{color:var(--volt);}
+.nav-links{display:flex;gap:24px;align-items:center;}
+.nav-links a{color:var(--muted);font-size:13px;font-weight:500;}
+.nav-links a:hover{color:var(--heading);}
+.nav-cta{background:var(--volt);color:#000;padding:8px 18px;border-radius:8px;font-weight:700;font-size:12px;letter-spacing:.4px;font-family:var(--mono);transition:.2s;border:none;cursor:pointer;text-transform:uppercase;}
+.nav-cta:hover{background:#fde68a;}
+.menu-toggle{display:none;background:none;border:none;color:var(--heading);font-size:24px;cursor:pointer;}
+
+.article-header{padding:80px 24px 40px;}
+.article-header-inner{max-width:var(--max-w);margin:0 auto;}
+.breadcrumb{font-family:var(--mono);font-size:11px;color:var(--muted);margin-bottom:20px;letter-spacing:.5px;}
+.breadcrumb a{color:var(--muted);}
+.breadcrumb a:hover{color:var(--volt);}
+.article-cat{font-family:var(--mono);font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:1px;padding:4px 12px;border-radius:4px;display:inline-block;margin-bottom:16px;}
+.article-header h1{font-size:clamp(28px,5vw,40px);font-weight:900;color:var(--heading);letter-spacing:-1px;line-height:1.15;margin-bottom:16px;}
+.article-meta{font-family:var(--mono);font-size:12px;color:var(--muted);display:flex;gap:20px;flex-wrap:wrap;}
+
+.article-body{padding:0 24px 80px;}
+.article-content{max-width:var(--max-w);margin:0 auto;}
+.article-content h2{font-size:24px;font-weight:800;color:var(--heading);margin:48px 0 16px;letter-spacing:-.3px;padding-left:16px;border-left:3px solid var(--volt);}
+.article-content h3{font-size:18px;font-weight:700;color:var(--heading);margin:32px 0 12px;}
+.article-content p{font-size:16px;color:var(--text);line-height:1.8;margin-bottom:20px;}
+.article-content strong{color:var(--heading);}
+.article-content ul,.article-content ol{margin:0 0 20px 24px;}
+.article-content li{font-size:15px;line-height:1.7;margin-bottom:8px;}
+
+.info-box{background:var(--volt-dim);border:1px solid rgba(251,191,36,.15);border-radius:var(--radius);padding:20px 24px;margin:24px 0;font-size:14px;line-height:1.7;}
+.info-box strong{color:var(--volt);}
+.info-box.warning{background:rgba(239,68,68,.06);border-color:rgba(239,68,68,.15);}
+.info-box.warning strong{color:var(--danger);}
+.info-box.tip{background:rgba(74,222,128,.06);border-color:rgba(74,222,128,.15);}
+.info-box.tip strong{color:var(--green);}
+
+.comparison-table{width:100%;border-collapse:collapse;margin:24px 0;font-size:14px;}
+.comparison-table th{text-align:left;padding:12px 16px;background:var(--card);color:var(--heading);font-weight:700;border-bottom:2px solid var(--volt);font-size:13px;}
+.comparison-table td{padding:12px 16px;border-bottom:1px solid var(--border);vertical-align:top;}
+.comparison-table tr:hover td{background:var(--card);}
+
+.cta-box{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:32px;margin:40px 0;text-align:center;}
+.cta-box h3{font-size:20px;font-weight:800;color:var(--heading);margin-bottom:8px;}
+.cta-box p{font-size:14px;color:var(--muted);margin-bottom:20px;}
+.cta-btn{display:inline-block;background:var(--volt);color:#000;padding:12px 28px;border-radius:10px;font-weight:700;font-size:14px;transition:.2s;}
+.cta-btn:hover{background:#fde68a;transform:translateY(-2px);box-shadow:0 8px 30px var(--volt-glow);color:#000;}
+
+.related{padding:0 24px 80px;}
+.related-inner{max-width:var(--max-w);margin:0 auto;}
+.related h2{font-size:20px;font-weight:800;color:var(--heading);margin-bottom:20px;}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.related-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;transition:.3s;}
+.related-card:hover{border-color:rgba(251,191,36,.15);transform:translateY(-2px);}
+.related-card h3{font-size:14px;font-weight:700;color:var(--heading);margin-bottom:6px;line-height:1.4;}
+.related-card p{font-size:12px;color:var(--muted);font-family:var(--mono);}
+
+footer{border-top:1px solid var(--border);padding:32px 24px;}
+.footer-simple{max-width:1120px;margin:0 auto;display:flex;justify-content:space-between;font-size:12px;color:var(--muted);font-family:var(--mono);}
+.footer-simple a{color:var(--muted);}
+.footer-simple a:hover{color:var(--volt);}
+
+@media(max-width:700px){
+  .nav-links{display:none;position:absolute;top:60px;left:0;right:0;background:rgba(10,10,10,.97);flex-direction:column;padding:20px 24px;gap:16px;border-bottom:1px solid var(--border);}
+  .nav-links.open{display:flex;}.menu-toggle{display:block;}
+  .article-header{padding:60px 24px 28px;}
+  .related-grid{grid-template-columns:1fr;}
+  .comparison-table{font-size:12px;}
+  .comparison-table th,.comparison-table td{padding:8px 10px;}
+  .footer-simple{flex-direction:column;gap:8px;text-align:center;}
+}
+</style>
+</head>
+<body>
+
+<div class="hazard-stripe"></div>
+<nav><div class="nav-inner">
+  <a href="../index.html" class="nav-logo"><span class="bolt">⚡</span>sub<span class="dash">-</span>tensiune<span style="color:var(--muted);font-weight:400">.ro</span></a>
+  <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
+  <div class="nav-links"><a href="../index.html#features">Funcții</a><a href="../blog.html">Blog</a><a href="../index.html#resurse">Resurse</a><a href="../index.html#preturi">Prețuri</a><button class="nav-cta" onclick="window.location.href='../app.html'">Începe gratuit →</button></div>
+</div></nav>
+
+<section class="article-header">
+<div class="article-header-inner">
+  <div class="breadcrumb"><a href="../index.html">Acasă</a> / <a href="../blog.html">Blog</a> / DDR Ghid complet</div>
+  <span class="article-cat" style="background:rgba(56,189,248,.1);color:var(--blue);">Normative</span>
+  <h1>Ghid complet DDR — tipuri A, AC, B, F. Când și unde le folosim?</h1>
+  <div class="article-meta">
+    <span>📅 15 Februarie 2026</span>
+    <span>⏱️ 8 min citire</span>
+    <span>👁️ 1.923 cititori</span>
+  </div>
+</div>
+</section>
+
+<section class="article-body">
+<div class="article-content">
+
+<p>Dispozitivul de protecție diferențial rezidual — prescurtat DDR sau mai popular „diferențial" — este probabil cel mai important element de protecție din instalația electrică de joasă tensiune. Protejează împotriva electrocutării prin contact direct și indirect, și împotriva incendiilor cauzate de curenți reziduali. Dar nu toate DDR-urile sunt la fel, și alegerea tipului corect este esențială.</p>
+
+<h2>Ce este un DDR și cum funcționează</h2>
+
+<p>Principiul este simplu: DDR-ul compară curentul care „pleacă" pe conductorul de fază cu curentul care „se întoarce" pe conductorul de nul. Într-un circuit sănătos, cele două sunt egale. Dacă apare o diferență (curent rezidual) — înseamnă că o parte din curent „se pierde" pe o cale nedorită, de exemplu prin corpul unei persoane sau printr-un izolator deteriorat. Când diferența depășește pragul nominal (IΔn), DDR-ul deconectează circuitul.</p>
+
+<p>DDR-urile se clasifică după două criterii principale: <strong>curentul diferențial rezidual nominal (IΔn)</strong> și <strong>tipul de curent de defect pe care îl pot detecta</strong>.</p>
+
+<h2>Clasificare după IΔn — sensibilitate</h2>
+
+<table class="comparison-table">
+<thead>
+<tr><th>Categorie</th><th>IΔn</th><th>Protecție principală</th><th>Utilizare tipică</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>Înaltă sensibilitate</strong></td><td>10 mA</td><td>Contact direct</td><td>Circuite speciale (copii, medii umede extreme)</td></tr>
+<tr><td><strong>Înaltă sensibilitate</strong></td><td>30 mA</td><td>Contact direct + indirect</td><td>Prize, iluminat, circuite terminale — cel mai frecvent</td></tr>
+<tr><td><strong>Medie sensibilitate</strong></td><td>100-300 mA</td><td>Incendiu + contact indirect</td><td>Protecție contra incendiului, tablouri secundare</td></tr>
+<tr><td><strong>Joasă sensibilitate</strong></td><td>500 mA - 1 A</td><td>Incendiu</td><td>Tablouri generale, coloane</td></tr>
+</tbody>
+</table>
+
+<div class="info-box">
+<strong>⚡ Regula de bază I7-2011:</strong> Toate circuitele terminale care alimentează prize cu curent nominal ≤ 32A trebuie protejate cu DDR de 30 mA. Fără excepție.
+</div>
+
+<h2>Clasificare după tipul de curent de defect</h2>
+
+<p>Aici lucrurile devin tehnice. Diferite tipuri de sarcini produc diferite forme de curent de defect, și nu orice DDR le poate detecta pe toate.</p>
+
+<h3>Tip AC — cel de bază</h3>
+
+<p>Detectează doar curenți reziduali sinusoidali de frecvență industrială (50 Hz). Este cel mai simplu și cel mai ieftin. Simbolul de pe DDR este o sinusoidă (~). Potrivit pentru circuite pur rezistive: iluminat incandescent, prize pentru aparate simple, încălzitoare convenționale.</p>
+
+<p><strong>Limitare:</strong> Nu detectează componente continue pulsatorii sau componente de curent continuu netede. Într-o lume cu tot mai multe convertoare electronice, tipul AC devine din ce în ce mai insuficient.</p>
+
+<h3>Tip A — standardul actual</h3>
+
+<p>Detectează tot ce detectează tipul AC, plus curenți reziduali cu componentă continuă pulsatorie (forme de undă semiredresate). Simbolul este o sinusoidă plus o undă pulsatorie. Este tipul minim recomandat de I7-2011 pentru majoritatea circuitelor din locuințe și clădiri civile.</p>
+
+<p><strong>Obligatoriu pentru:</strong> circuite care alimentează mașini de spălat, uscătoare, cuptoare cu microunde, stații de încărcare vehicule electrice (dacă nu se folosește tip B), variatore de lumină (dimmere), pompe de căldură.</p>
+
+<h3>Tip F — pentru invertoare monofazate</h3>
+
+<p>Detectează tot ce detectează tipul A, plus curenți reziduali cu frecvențe mixte generate de invertoare monofazate. Conceput special pentru protecția circuitelor alimentate prin convertoare de frecvență monofazate: mașini de spălat cu invertor, pompele de căldură cu compresor invertor, climatizare cu invertor.</p>
+
+<p>Este un pas intermediar între tipul A și tipul B, la un preț mai accesibil decât tipul B.</p>
+
+<h3>Tip B — protecție completă</h3>
+
+<p>Detectează toate tipurile de curenți reziduali: sinusoidali, pulsatorii, cu componentă continuă netedă, și curenți de defect de frecvență superioară. Simbolul include toate formele de undă. Este cel mai complet, dar și cel mai scump.</p>
+
+<p><strong>Obligatoriu pentru:</strong> stații de încărcare vehicule electrice (conform IEC 61851), invertoare trifazate, variaotre de frecvență trifazate, echipamente medicale, alimentare UPS.</p>
+
+<table class="comparison-table">
+<thead>
+<tr><th>Tip DDR</th><th>AC sinusoidal</th><th>Pulsatoriu DC</th><th>DC neted</th><th>Frecvențe mixte</th><th>Preț relativ</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>AC</strong></td><td>✅</td><td>❌</td><td>❌</td><td>❌</td><td>€</td></tr>
+<tr><td><strong>A</strong></td><td>✅</td><td>✅</td><td>❌</td><td>❌</td><td>€€</td></tr>
+<tr><td><strong>F</strong></td><td>✅</td><td>✅</td><td>❌</td><td>✅ (mono)</td><td>€€€</td></tr>
+<tr><td><strong>B</strong></td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>€€€€</td></tr>
+</tbody>
+</table>
+
+<h2>Selectivitatea între DDR-uri</h2>
+
+<p>Într-o instalație cu mai multe niveluri de protecție diferențială (DDR general + DDR-uri pe circuite), trebuie asigurată selectivitatea. Adică, la un defect pe un circuit, să declanșeze doar DDR-ul acelui circuit, nu și cel general — altfel întreaga instalație rămâne fără curent.</p>
+
+<p>Selectivitatea se obține în două moduri:</p>
+
+<p><strong>Selectivitate ampermetrică:</strong> DDR-ul din amonte are IΔn mai mare decât cel din aval. Exemplu: DDR general 300 mA, DDR-uri pe circuite 30 mA. Necesară dar nu suficientă singură.</p>
+
+<p><strong>Selectivitate cronometrică:</strong> DDR-ul din amonte are întârziere la declanșare (tip S sau tip selectiv). Exemplu: DDR general 300 mA tip S (cu întârziere), DDR-uri pe circuite 30 mA instantanee. Aceasta este metoda fiabilă.</p>
+
+<div class="info-box warning">
+<strong>⚠️ Greșeală frecventă:</strong> Montarea unui DDR de 30 mA general fără DDR-uri individuale pe circuite. La primul defect, toată casa rămâne fără curent. Soluția: fie DDR-uri pe fiecare circuit, fie un DDR general selectiv (tip S) + DDR-uri individuale.
+</div>
+
+<h2>5 greșeli frecvente la alegerea DDR-urilor</h2>
+
+<h3>1. Folosirea tipului AC pentru mașini de spălat cu invertor</h3>
+<p>Mașinile moderne de spălat au motoare cu invertor care produc curenți de defect cu componentă continuă pulsatorie. Un DDR tip AC nu le detectează. Rezultat: protecția este iluzorie. Soluție: DDR tip A (minim) sau tip F.</p>
+
+<h3>2. Lipsa selectivității verticale</h3>
+<p>Un singur DDR de 30 mA pe tot tabloul. La orice defect minor (o priză umedă, un bec defect), cade toată alimentarea. Soluție: DDR-uri individuale pe grupuri de circuite, cu DDR selectiv în amonte.</p>
+
+<h3>3. DDR tip AC pe stația de încărcare EV</h3>
+<p>Stațiile de încărcare pentru vehicule electrice necesită minim DDR tip A cu protecție DC 6 mA integrată, sau DDR tip B. Normele IEC 61851 sunt explicite. Un DDR tip AC nu oferă protecție adecvată și poate chiar fi blocat de componenta continuă.</p>
+
+<h3>4. Testarea lunară omisă</h3>
+<p>Fiecare DDR are un buton de test (butonul T). Acesta trebuie apăsat lunar pentru a verifica funcționarea mecanismului de declanșare. Un DDR care nu declanșează la test trebuie înlocuit imediat. Mulți utilizatori nu știu asta.</p>
+
+<h3>5. DDR subdimensionat ca curent nominal</h3>
+<p>DDR-ul trebuie să aibă curentul nominal (In) cel puțin egal cu cel al disjunctorului din amonte. Un DDR de 25A protejat de un disjunctor de 32A se va supraîncălzi și va ceda. Regula: In(DDR) ≥ In(disjunctor amonte).</p>
+
+<div class="cta-box">
+  <h3>⚡ Testează-ți cunoștințele despre DDR</h3>
+  <p>Peste 50 de întrebări specifice despre protecția diferențială din I7-2011, cu explicații detaliate.</p>
+  <a href="../app.html" class="cta-btn">Începe flashcard-urile →</a>
+</div>
+
+</div>
+</section>
+
+<section class="related">
+<div class="related-inner">
+  <h2>Articole similare</h2>
+  <div class="related-grid">
+    <a href="zone-baie-greseli-frecvente.html" class="related-card" style="text-decoration:none;">
+      <h3>Zonele din baie — 5 greșeli frecvente</h3>
+      <p>7 min · Studiu de caz</p>
+    </a>
+    <a href="dimensionare-priza-pamant.html" class="related-card" style="text-decoration:none;">
+      <h3>Cum dimensionezi o priză de pământ</h3>
+      <p>10 min · Ghid Practic</p>
+    </a>
+  </div>
+</div>
+</section>
+
+<footer><div class="footer-simple"><span>© 2026 <a href="../index.html">sub-tensiune.ro</a></span><span>Realizat cu ⚡ pentru electricienii din România</span></div></footer>
+<div class="hazard-stripe"></div>
+</body>
+</html>

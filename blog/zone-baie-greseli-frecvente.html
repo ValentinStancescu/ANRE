@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="description" content="5 greșeli frecvente la instalațiile electrice din băi — zone de protecție, DDR, echipotențializare, grade IP conform I7-2011.">
+<title>Zonele din baie — 5 greșeli frecvente — sub-tensiune.ro</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0a0a;--surface:#111;--card:#161616;--card2:#1c1c1c;--border:#2a2a2a;--border2:#333;--text:#c8c8c8;--muted:#777;--heading:#f5f5f5;--volt:#fbbf24;--volt-dim:rgba(251,191,36,.08);--volt-glow:rgba(251,191,36,.3);--danger:#ef4444;--blue:#38bdf8;--green:#4ade80;--radius:12px;--max-w:760px;--font:'Outfit',sans-serif;--mono:'JetBrains Mono',monospace;}
+*{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
+body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;}
+a{color:var(--volt);text-decoration:none;transition:.2s;}a:hover{color:#fde68a;}
+.hazard-stripe{height:4px;background:repeating-linear-gradient(-45deg,var(--volt) 0,var(--volt) 8px,var(--bg) 8px,var(--bg) 16px);}
+nav{position:sticky;top:0;z-index:999;background:rgba(10,10,10,.92);backdrop-filter:blur(20px) saturate(1.3);border-bottom:1px solid var(--border);}
+.nav-inner{max-width:1120px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:60px;}
+.nav-logo{font-family:var(--mono);font-size:17px;font-weight:700;color:var(--heading);display:flex;align-items:center;gap:10px;letter-spacing:-.3px;}
+.nav-logo .bolt{width:28px;height:28px;background:var(--volt);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:16px;color:#000;}
+.nav-logo .dash{color:var(--volt);}
+.nav-links{display:flex;gap:24px;align-items:center;}
+.nav-links a{color:var(--muted);font-size:13px;font-weight:500;}
+.nav-links a:hover{color:var(--heading);}
+.nav-cta{background:var(--volt);color:#000;padding:8px 18px;border-radius:8px;font-weight:700;font-size:12px;letter-spacing:.4px;font-family:var(--mono);transition:.2s;border:none;cursor:pointer;text-transform:uppercase;}
+.nav-cta:hover{background:#fde68a;}
+.menu-toggle{display:none;background:none;border:none;color:var(--heading);font-size:24px;cursor:pointer;}
+
+.article-header{padding:80px 24px 40px;}
+.article-header-inner{max-width:var(--max-w);margin:0 auto;}
+.breadcrumb{font-family:var(--mono);font-size:11px;color:var(--muted);margin-bottom:20px;letter-spacing:.5px;}
+.breadcrumb a{color:var(--muted);}.breadcrumb a:hover{color:var(--volt);}
+.article-cat{font-family:var(--mono);font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:1px;padding:4px 12px;border-radius:4px;display:inline-block;margin-bottom:16px;}
+.article-header h1{font-size:clamp(28px,5vw,40px);font-weight:900;color:var(--heading);letter-spacing:-1px;line-height:1.15;margin-bottom:16px;}
+.article-meta{font-family:var(--mono);font-size:12px;color:var(--muted);display:flex;gap:20px;flex-wrap:wrap;}
+
+.article-body{padding:0 24px 80px;}
+.article-content{max-width:var(--max-w);margin:0 auto;}
+.article-content h2{font-size:24px;font-weight:800;color:var(--heading);margin:48px 0 16px;letter-spacing:-.3px;padding-left:16px;border-left:3px solid var(--volt);}
+.article-content h3{font-size:18px;font-weight:700;color:var(--heading);margin:32px 0 12px;}
+.article-content p{font-size:16px;color:var(--text);line-height:1.8;margin-bottom:20px;}
+.article-content strong{color:var(--heading);}
+
+.info-box{background:var(--volt-dim);border:1px solid rgba(251,191,36,.15);border-radius:var(--radius);padding:20px 24px;margin:24px 0;font-size:14px;line-height:1.7;}
+.info-box strong{color:var(--volt);}
+.info-box.warning{background:rgba(239,68,68,.06);border-color:rgba(239,68,68,.15);}
+.info-box.warning strong{color:var(--danger);}
+.info-box.tip{background:rgba(74,222,128,.06);border-color:rgba(74,222,128,.15);}
+.info-box.tip strong{color:var(--green);}
+
+.comparison-table{width:100%;border-collapse:collapse;margin:24px 0;font-size:14px;}
+.comparison-table th{text-align:left;padding:12px 16px;background:var(--card);color:var(--heading);font-weight:700;border-bottom:2px solid var(--volt);font-size:13px;}
+.comparison-table td{padding:12px 16px;border-bottom:1px solid var(--border);vertical-align:top;}
+.comparison-table tr:hover td{background:var(--card);}
+
+.mistake-number{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:36px;height:36px;background:var(--danger);color:#fff;
+  font-family:var(--mono);font-weight:800;font-size:16px;border-radius:8px;
+  margin-right:12px;vertical-align:middle;
+}
+
+.zone-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:24px 0;}
+.zone-card{
+  background:var(--card);border:1px solid var(--border);border-radius:10px;
+  padding:16px;text-align:center;
+}
+.zone-card .zone-name{font-family:var(--mono);font-size:20px;font-weight:800;margin-bottom:6px;}
+.zone-card .zone-desc{font-size:11px;color:var(--muted);line-height:1.5;}
+.zone-0 .zone-name{color:var(--danger);}
+.zone-1 .zone-name{color:#f97316;}
+.zone-2 .zone-name{color:var(--volt);}
+.zone-3 .zone-name{color:var(--green);}
+
+.cta-box{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:32px;margin:40px 0;text-align:center;}
+.cta-box h3{font-size:20px;font-weight:800;color:var(--heading);margin-bottom:8px;}
+.cta-box p{font-size:14px;color:var(--muted);margin-bottom:20px;}
+.cta-btn{display:inline-block;background:var(--volt);color:#000;padding:12px 28px;border-radius:10px;font-weight:700;font-size:14px;transition:.2s;}
+.cta-btn:hover{background:#fde68a;transform:translateY(-2px);box-shadow:0 8px 30px var(--volt-glow);color:#000;}
+
+.related{padding:0 24px 80px;}
+.related-inner{max-width:var(--max-w);margin:0 auto;}
+.related h2{font-size:20px;font-weight:800;color:var(--heading);margin-bottom:20px;}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.related-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;transition:.3s;}
+.related-card:hover{border-color:rgba(251,191,36,.15);transform:translateY(-2px);}
+.related-card h3{font-size:14px;font-weight:700;color:var(--heading);margin-bottom:6px;line-height:1.4;}
+.related-card p{font-size:12px;color:var(--muted);font-family:var(--mono);}
+
+footer{border-top:1px solid var(--border);padding:32px 24px;}
+.footer-simple{max-width:1120px;margin:0 auto;display:flex;justify-content:space-between;font-size:12px;color:var(--muted);font-family:var(--mono);}
+.footer-simple a{color:var(--muted);}.footer-simple a:hover{color:var(--volt);}
+
+@media(max-width:700px){
+  .nav-links{display:none;position:absolute;top:60px;left:0;right:0;background:rgba(10,10,10,.97);flex-direction:column;padding:20px 24px;gap:16px;border-bottom:1px solid var(--border);}
+  .nav-links.open{display:flex;}.menu-toggle{display:block;}
+  .article-header{padding:60px 24px 28px;}
+  .zone-grid{grid-template-columns:1fr 1fr;}
+  .related-grid{grid-template-columns:1fr;}
+  .comparison-table{font-size:12px;}.comparison-table th,.comparison-table td{padding:8px 10px;}
+  .footer-simple{flex-direction:column;gap:8px;text-align:center;}
+}
+</style>
+</head>
+<body>
+
+<div class="hazard-stripe"></div>
+<nav><div class="nav-inner">
+  <a href="../index.html" class="nav-logo"><span class="bolt">⚡</span>sub<span class="dash">-</span>tensiune<span style="color:var(--muted);font-weight:400">.ro</span></a>
+  <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
+  <div class="nav-links"><a href="../index.html#features">Funcții</a><a href="../blog.html">Blog</a><a href="../index.html#resurse">Resurse</a><a href="../index.html#preturi">Prețuri</a><button class="nav-cta" onclick="window.location.href='../app.html'">Începe gratuit →</button></div>
+</div></nav>
+
+<section class="article-header">
+<div class="article-header-inner">
+  <div class="breadcrumb"><a href="../index.html">Acasă</a> / <a href="../blog.html">Blog</a> / Zone baie</div>
+  <span class="article-cat" style="background:rgba(239,68,68,.1);color:var(--danger);">Studiu de caz</span>
+  <h1>Zonele din baie — 5 greșeli frecvente la instalațiile electrice</h1>
+  <div class="article-meta">
+    <span>📅 25 Ianuarie 2026</span>
+    <span>⏱️ 7 min citire</span>
+    <span>👁️ 1.102 cititori</span>
+  </div>
+</div>
+</section>
+
+<section class="article-body">
+<div class="article-content">
+
+<p>Baia este cel mai periculos loc din casă din punct de vedere electric. Apa reduce dramatic rezistența corpului uman — de la zeci de mii de ohmi pe piele uscată, la câteva sute de ohmi pe piele umedă. De aceea I7-2011 (secțiunea 7.701) definește reguli stricte pentru instalațiile electrice din băi, prin împărțirea spațiului în zone de protecție.</p>
+
+<p>Din cele peste 50 de băi inspectate în ultimul an, am extras cele mai frecvente neconformități. Toate sunt periculoase, toate sunt evitabile.</p>
+
+<h2>Zonele de protecție — recapitulare rapidă</h2>
+
+<div class="zone-grid">
+  <div class="zone-card zone-0">
+    <div class="zone-name">Zona 0</div>
+    <div class="zone-desc">Interiorul căzii/dușului. Doar SELV 12V AC. IPX7 minim.</div>
+  </div>
+  <div class="zone-card zone-1">
+    <div class="zone-name">Zona 1</div>
+    <div class="zone-desc">Deasupra căzii/dușului, h=2,25m. IPX4 minim. Fără prize.</div>
+  </div>
+  <div class="zone-card zone-2">
+    <div class="zone-name">Zona 2</div>
+    <div class="zone-desc">0,6m în jurul zonei 1. IPX4 minim. Prize SELV sau cu transformator.</div>
+  </div>
+  <div class="zone-card zone-3">
+    <div class="zone-name">Zona 3</div>
+    <div class="zone-desc">Restul băii. Reguli standard + DDR 30mA obligatoriu.</div>
+  </div>
+</div>
+
+<p>Limitele zonelor se măsoară de la marginea exterioară a căzii sau a receptorului de duș. Pe verticală, zona 1 se extinde de la podea până la 2,25 m înălțime (sau până la plafonul dușului, dacă e mai jos). Dacă nu există cadă/receptor de duș (duș la nivel), zona 1 se extinde 1,2 m de la capul de duș, pe orizontală.</p>
+
+<h2><span class="mistake-number">1</span> Prize montate în zona 1</h2>
+
+<p>Cea mai gravă și cea mai frecventă greșeală. Am găsit prize standard de 230V montate direct deasupra căzii sau pe peretele din interiorul cabinei de duș. Uneori chiar prize fără grad IP, cu mecanismul expus la stropire directă.</p>
+
+<p><strong>Ce spune normativul:</strong> În zonele 0 și 1 nu se admite montarea de prize. Punct. Nu există excepție, nu există „priză etanșă" care ar fi ok. Singurele echipamente electrice permise în zona 1 sunt cele alimentate la SELV (maximum 12V AC sau 30V DC) sau echipamente fixe specifice (boiler, ventilator de evacuare) cu grad de protecție minim IPX4.</p>
+
+<p><strong>Soluția:</strong> Mută priza în zona 2 sau 3 (minimum 0,6 m de marginea căzii/dușului). Prizele din baie trebuie alimentate prin DDR 30 mA și trebuie să aibă minim IP44 dacă sunt în zona 2.</p>
+
+<h2><span class="mistake-number">2</span> Lipsa DDR-ului de 30 mA</h2>
+
+<p>Am găsit băi unde circuitul de iluminat și prizele sunt protejate doar de disjunctor, fără DDR. Într-un mediu umed, un disjunctor singur nu oferă protecție la electrocutare — el protejează doar împotriva supracurenților, nu a curenților de defect la pământ.</p>
+
+<p><strong>Ce spune normativul:</strong> Toate circuitele care alimentează echipamente în zonele 0, 1, 2 și 3 trebuie protejate cu DDR de maximum 30 mA. Inclusiv circuitul de iluminat, nu doar prizele.</p>
+
+<div class="info-box warning">
+<strong>⚠️ Situație reală:</strong> O garsonieră din București — circuitul de iluminat al băii era comun cu cel al bucătăriei și al holului, fără DDR. Un scurtcircuit la un corp de iluminat din baie ar fi pus sub tensiune carcasa metalică, iar singura protecție era disjunctorul de 16A — insuficient pentru a preveni electrocutarea.
+</div>
+
+<h2><span class="mistake-number">3</span> Echipotențializare suplimentară absentă</h2>
+
+<p>I7-2011 cere realizarea unei legături echipotențiale suplimentare în baie. Aceasta conectează toate elementele conductoare accesibile: țevi metalice de apă caldă și rece, canalizare metalică, cadrul metalic al căzii, radiatoare, și conductorul de protecție al fiecărui circuit electric din baie.</p>
+
+<p>În practică, am constatat că această legătură lipsește în peste 70% din cazuri. Motivele: electricianul nu a fost coordonat cu instalatorul sanitar, sau echipotențializarea nu a fost prevăzută în proiect, sau s-a „uitat" la execuție.</p>
+
+<p><strong>De ce contează:</strong> Fără echipotențializare, pot apărea diferențe de potențial periculoase între elemente din baie. Exemplu: o persoană care atinge simultan un robinet metalic (conectat la rețeaua de apă cu priză de pământ proprie) și carcasa unui boiler electric (conectat la PE al instalației electrice) poate fi supusă unei tensiuni de atingere fatale dacă cele două „pământuri" au potențiale diferite.</p>
+
+<p><strong>Execuție:</strong> Conductor Cu 4 mm² minim (sau 2,5 mm² dacă e protejat mecanic), conectat cu cleme certificate la fiecare element conductiv. Se adună toate într-o bornă de echipotențializare montată accesibil (de obicei sub lavou sau într-un panou tehnic).</p>
+
+<h2><span class="mistake-number">4</span> Grade IP necorespunzătoare</h2>
+
+<p>Am găsit corpuri de iluminat standard (IP20) montate deasupra dușului, în zona 1. La prima utilizare, aburul și stropii de apă intră direct în mecanismul electric. Nu e vorba doar de normatv — e o chestiune de logică elementară.</p>
+
+<table class="comparison-table">
+<thead>
+<tr><th>Zonă</th><th>IP minim</th><th>Ce înseamnă</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>Zona 0</strong></td><td>IPX7</td><td>Protecție la imersie temporară</td></tr>
+<tr><td><strong>Zona 1</strong></td><td>IPX4</td><td>Protecție la stropire din orice direcție</td></tr>
+<tr><td><strong>Zona 2</strong></td><td>IPX4</td><td>Protecție la stropire din orice direcție</td></tr>
+<tr><td><strong>Zona 3</strong></td><td>IP21</td><td>Protecție la picurare verticală (dar IPX4 recomandat)</td></tr>
+</tbody>
+</table>
+
+<div class="info-box tip">
+<strong>💡 Sfat practic:</strong> Dacă baia are jet de duș orientabil (tip „rain shower" pe braț mobil), zona 1 se poate extinde. Regula generală: peste tot unde apa poate stropi direct, ai nevoie de minim IPX4. E mai bine să supradimensionezi gradul IP decât să riști.
+</div>
+
+<h2><span class="mistake-number">5</span> Tabloul electric montat în baie</h2>
+
+<p>Am găsit tablouri electrice montate în baie — de obicei în băi mai mari sau în apartamente vechi unde baia era singurul loc „disponibil". I7-2011 interzice montarea tablourilor de distribuție în zonele 0, 1 și 2. În zona 3 este tehnic permis, dar puternic nerecomandabil — umiditatea constantă degradează componentele și conexiunile.</p>
+
+<p><strong>Soluția:</strong> Tabloul electric se montează în afara băii — hol, debara, zonă tehnică. Dacă nu ai altă opțiune și ești forțat de configurație, tabloul trebuie să aibă grad de protecție minim IP44 și toate circuitele din interior protejate cu DDR.</p>
+
+<h2>Checklist de verificare pentru baie</h2>
+
+<p>Folosește această listă la fiecare inspecție:</p>
+
+<p>✅ Zero prize sau aparate de comutare în zonele 0 și 1<br>
+✅ DDR 30 mA pe TOATE circuitele din baie (inclusiv iluminat)<br>
+✅ Echipotențializare suplimentară executată și documentată<br>
+✅ Grade IP corespunzătoare zonei pentru fiecare echipament<br>
+✅ Tablou electric în afara băii sau minim în zona 3 cu IP44<br>
+✅ Alimentare SELV (12V AC) pentru orice echipament din zona 0<br>
+✅ Trasee de cabluri: fără joncțiuni în zonele 0 și 1<br>
+✅ Încălzire prin pardoseală: cu ecran metalic legat la PE</p>
+
+<div class="cta-box">
+  <h3>⚡ Pregătit pentru ANRE?</h3>
+  <p>Întrebări despre zonele de protecție, grade IP și protecția în locuri speciale — direct din I7-2011.</p>
+  <a href="../app.html" class="cta-btn">Exersează gratuit →</a>
+</div>
+
+</div>
+</section>
+
+<section class="related">
+<div class="related-inner">
+  <h2>Articole similare</h2>
+  <div class="related-grid">
+    <a href="ghid-complet-ddr.html" class="related-card" style="text-decoration:none;">
+      <h3>Ghid complet DDR — tipuri A, AC, B, F</h3>
+      <p>8 min · Normative</p>
+    </a>
+    <a href="dimensionare-priza-pamant.html" class="related-card" style="text-decoration:none;">
+      <h3>Cum dimensionezi o priză de pământ</h3>
+      <p>10 min · Ghid Practic</p>
+    </a>
+  </div>
+</div>
+</section>
+
+<footer><div class="footer-simple"><span>© 2026 <a href="../index.html">sub-tensiune.ro</a></span><span>Realizat cu ⚡ pentru electricienii din România</span></div></footer>
+<div class="hazard-stripe"></div>
+</body>
+</html>

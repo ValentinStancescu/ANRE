@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="description" content="Cum dimensionezi o priză de pământ pas cu pas conform PE 102 — rezistivitate sol, alegere electrozi, verificare cu tellurometru.">
+<title>Cum dimensionezi o priză de pământ — sub-tensiune.ro</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0a0a;--surface:#111;--card:#161616;--card2:#1c1c1c;--border:#2a2a2a;--border2:#333;--text:#c8c8c8;--muted:#777;--heading:#f5f5f5;--volt:#fbbf24;--volt-dim:rgba(251,191,36,.08);--volt-glow:rgba(251,191,36,.3);--danger:#ef4444;--blue:#38bdf8;--green:#4ade80;--radius:12px;--max-w:760px;--font:'Outfit',sans-serif;--mono:'JetBrains Mono',monospace;}
+*{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
+body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;}
+a{color:var(--volt);text-decoration:none;transition:.2s;}a:hover{color:#fde68a;}
+.hazard-stripe{height:4px;background:repeating-linear-gradient(-45deg,var(--volt) 0,var(--volt) 8px,var(--bg) 8px,var(--bg) 16px);}
+nav{position:sticky;top:0;z-index:999;background:rgba(10,10,10,.92);backdrop-filter:blur(20px) saturate(1.3);border-bottom:1px solid var(--border);}
+.nav-inner{max-width:1120px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:60px;}
+.nav-logo{font-family:var(--mono);font-size:17px;font-weight:700;color:var(--heading);display:flex;align-items:center;gap:10px;letter-spacing:-.3px;}
+.nav-logo .bolt{width:28px;height:28px;background:var(--volt);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:16px;color:#000;}
+.nav-logo .dash{color:var(--volt);}
+.nav-links{display:flex;gap:24px;align-items:center;}
+.nav-links a{color:var(--muted);font-size:13px;font-weight:500;}
+.nav-links a:hover{color:var(--heading);}
+.nav-cta{background:var(--volt);color:#000;padding:8px 18px;border-radius:8px;font-weight:700;font-size:12px;letter-spacing:.4px;font-family:var(--mono);transition:.2s;border:none;cursor:pointer;text-transform:uppercase;}
+.nav-cta:hover{background:#fde68a;}
+.menu-toggle{display:none;background:none;border:none;color:var(--heading);font-size:24px;cursor:pointer;}
+
+.article-header{padding:80px 24px 40px;}
+.article-header-inner{max-width:var(--max-w);margin:0 auto;}
+.breadcrumb{font-family:var(--mono);font-size:11px;color:var(--muted);margin-bottom:20px;letter-spacing:.5px;}
+.breadcrumb a{color:var(--muted);}.breadcrumb a:hover{color:var(--volt);}
+.article-cat{font-family:var(--mono);font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:1px;padding:4px 12px;border-radius:4px;display:inline-block;margin-bottom:16px;}
+.article-header h1{font-size:clamp(28px,5vw,40px);font-weight:900;color:var(--heading);letter-spacing:-1px;line-height:1.15;margin-bottom:16px;}
+.article-meta{font-family:var(--mono);font-size:12px;color:var(--muted);display:flex;gap:20px;flex-wrap:wrap;}
+
+.article-body{padding:0 24px 80px;}
+.article-content{max-width:var(--max-w);margin:0 auto;}
+.article-content h2{font-size:24px;font-weight:800;color:var(--heading);margin:48px 0 16px;letter-spacing:-.3px;padding-left:16px;border-left:3px solid var(--volt);}
+.article-content h3{font-size:18px;font-weight:700;color:var(--heading);margin:32px 0 12px;}
+.article-content p{font-size:16px;color:var(--text);line-height:1.8;margin-bottom:20px;}
+.article-content strong{color:var(--heading);}
+.article-content ul,.article-content ol{margin:0 0 20px 24px;}
+.article-content li{font-size:15px;line-height:1.7;margin-bottom:8px;}
+.article-content code{font-family:var(--mono);background:var(--card);padding:2px 8px;border-radius:4px;font-size:14px;color:var(--volt);}
+
+.formula-box{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+  padding:24px;margin:24px 0;text-align:center;font-family:var(--mono);
+}
+.formula-box .formula{font-size:20px;font-weight:700;color:var(--volt);margin-bottom:8px;}
+.formula-box .legend{font-size:12px;color:var(--muted);text-align:left;line-height:1.8;}
+
+.info-box{background:var(--volt-dim);border:1px solid rgba(251,191,36,.15);border-radius:var(--radius);padding:20px 24px;margin:24px 0;font-size:14px;line-height:1.7;}
+.info-box strong{color:var(--volt);}
+.info-box.warning{background:rgba(239,68,68,.06);border-color:rgba(239,68,68,.15);}
+.info-box.warning strong{color:var(--danger);}
+.info-box.tip{background:rgba(74,222,128,.06);border-color:rgba(74,222,128,.15);}
+.info-box.tip strong{color:var(--green);}
+
+.comparison-table{width:100%;border-collapse:collapse;margin:24px 0;font-size:14px;}
+.comparison-table th{text-align:left;padding:12px 16px;background:var(--card);color:var(--heading);font-weight:700;border-bottom:2px solid var(--volt);font-size:13px;}
+.comparison-table td{padding:12px 16px;border-bottom:1px solid var(--border);vertical-align:top;}
+.comparison-table tr:hover td{background:var(--card);}
+
+.step-number{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;background:var(--volt);color:#000;font-family:var(--mono);font-weight:800;font-size:14px;border-radius:8px;margin-right:12px;vertical-align:middle;}
+
+.cta-box{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:32px;margin:40px 0;text-align:center;}
+.cta-box h3{font-size:20px;font-weight:800;color:var(--heading);margin-bottom:8px;}
+.cta-box p{font-size:14px;color:var(--muted);margin-bottom:20px;}
+.cta-btn{display:inline-block;background:var(--volt);color:#000;padding:12px 28px;border-radius:10px;font-weight:700;font-size:14px;transition:.2s;}
+.cta-btn:hover{background:#fde68a;transform:translateY(-2px);box-shadow:0 8px 30px var(--volt-glow);color:#000;}
+
+.related{padding:0 24px 80px;}
+.related-inner{max-width:var(--max-w);margin:0 auto;}
+.related h2{font-size:20px;font-weight:800;color:var(--heading);margin-bottom:20px;}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.related-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;transition:.3s;}
+.related-card:hover{border-color:rgba(251,191,36,.15);transform:translateY(-2px);}
+.related-card h3{font-size:14px;font-weight:700;color:var(--heading);margin-bottom:6px;line-height:1.4;}
+.related-card p{font-size:12px;color:var(--muted);font-family:var(--mono);}
+
+footer{border-top:1px solid var(--border);padding:32px 24px;}
+.footer-simple{max-width:1120px;margin:0 auto;display:flex;justify-content:space-between;font-size:12px;color:var(--muted);font-family:var(--mono);}
+.footer-simple a{color:var(--muted);}.footer-simple a:hover{color:var(--volt);}
+
+@media(max-width:700px){
+  .nav-links{display:none;position:absolute;top:60px;left:0;right:0;background:rgba(10,10,10,.97);flex-direction:column;padding:20px 24px;gap:16px;border-bottom:1px solid var(--border);}
+  .nav-links.open{display:flex;}.menu-toggle{display:block;}
+  .article-header{padding:60px 24px 28px;}
+  .related-grid{grid-template-columns:1fr;}
+  .comparison-table{font-size:12px;}.comparison-table th,.comparison-table td{padding:8px 10px;}
+  .footer-simple{flex-direction:column;gap:8px;text-align:center;}
+}
+</style>
+</head>
+<body>
+
+<div class="hazard-stripe"></div>
+<nav><div class="nav-inner">
+  <a href="../index.html" class="nav-logo"><span class="bolt">⚡</span>sub<span class="dash">-</span>tensiune<span style="color:var(--muted);font-weight:400">.ro</span></a>
+  <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
+  <div class="nav-links"><a href="../index.html#features">Funcții</a><a href="../blog.html">Blog</a><a href="../index.html#resurse">Resurse</a><a href="../index.html#preturi">Prețuri</a><button class="nav-cta" onclick="window.location.href='../app.html'">Începe gratuit →</button></div>
+</div></nav>
+
+<section class="article-header">
+<div class="article-header-inner">
+  <div class="breadcrumb"><a href="../index.html">Acasă</a> / <a href="../blog.html">Blog</a> / Priză de pământ</div>
+  <span class="article-cat" style="background:rgba(74,222,128,.1);color:var(--green);">Ghid Practic</span>
+  <h1>Cum dimensionezi o priză de pământ — pas cu pas conform PE 102</h1>
+  <div class="article-meta">
+    <span>📅 8 Februarie 2026</span>
+    <span>⏱️ 10 min citire</span>
+    <span>👁️ 1.456 cititori</span>
+  </div>
+</div>
+</section>
+
+<section class="article-body">
+<div class="article-content">
+
+<p>Priza de pământ este fundația oricărei instalații electrice sigure. Fără o legătură bună cu pământul, protecția prin deconectarea automată a alimentării nu funcționează, protecția la supratensiuni nu are unde să descarce, și echipotențializarea este compromisă. PE 102/1986 rămâne normativul de referință pentru proiectarea, execuția și verificarea prizelor de pământ în România.</p>
+
+<h2><span class="step-number">1</span> Determină rezistivitatea solului</h2>
+
+<p>Totul pornește de la sol. Rezistivitatea terenului (ρ, exprimată în Ω·m) determină câți electrozi ai nevoie și de ce dimensiuni. Un sol cu rezistivitate mică (argilă umedă) necesită mai puțin material decât un sol cu rezistivitate mare (piatră, nisip uscat).</p>
+
+<table class="comparison-table">
+<thead>
+<tr><th>Tip sol</th><th>ρ tipic (Ω·m)</th><th>Observații</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>Mâl, pământ vegetal umed</strong></td><td>5 – 50</td><td>Excelent pentru priză de pământ</td></tr>
+<tr><td><strong>Argilă</strong></td><td>20 – 150</td><td>Bun, variabil cu umiditatea</td></tr>
+<tr><td><strong>Nisip umed</strong></td><td>50 – 300</td><td>Acceptabil, necesită mai mulți electrozi</td></tr>
+<tr><td><strong>Pietriș</strong></td><td>300 – 3.000</td><td>Problematic, necesită tratament sol</td></tr>
+<tr><td><strong>Calcar, granit</strong></td><td>1.000 – 10.000</td><td>Foarte dificil, soluții speciale necesare</td></tr>
+</tbody>
+</table>
+
+<p><strong>Metoda Wenner</strong> este cea standard pentru măsurarea rezistivității. Se introduc 4 electrozi în linie, la distanțe egale (a), la o adâncime mică (sub 30 cm). Se injectează curent prin electrozii exteriori și se măsoară tensiunea pe electrozii interiori. Rezistivitatea se calculează cu formula:</p>
+
+<div class="formula-box">
+  <div class="formula">ρ = 2π × a × R</div>
+  <div class="legend">
+    ρ = rezistivitatea solului (Ω·m)<br>
+    a = distanța între electrozi (m)<br>
+    R = rezistența măsurată (Ω)<br>
+    π ≈ 3,14159
+  </div>
+</div>
+
+<p>Se fac minimum 3 măsurători cu distanțe diferite între electrozi (de exemplu 2m, 5m, 10m) și pe două direcții perpendiculare. Variația mare între măsurători indică un sol neomogen — se folosește media geometrică.</p>
+
+<h2><span class="step-number">2</span> Stabilește rezistența maximă admisă</h2>
+
+<p>Rezistența de dispersie a prizei de pământ trebuie să fie suficient de mică pentru ca protecțiile să funcționeze. Valorile maxime depind de schema de legare la pământ:</p>
+
+<table class="comparison-table">
+<thead>
+<tr><th>Schemă</th><th>Condiție</th><th>Valoare tipică</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>TT</strong></td><td>Ra × Ia ≤ UL (50V)</td><td>Ra ≤ 166 Ω (pt DDR 300mA)<br>Ra ≤ 1666 Ω (pt DDR 30mA)</td></tr>
+<tr><td><strong>TN</strong></td><td>Zs × Ia ≤ Uo</td><td>Conform impedanța buclei</td></tr>
+<tr><td><strong>IT</strong></td><td>Conform calcul specific</td><td>Variable</td></tr>
+</tbody>
+</table>
+
+<div class="info-box">
+<strong>⚡ Practică uzuală:</strong> Pentru instalații rezidențiale în schemă TT (cel mai frecvent caz în România), o priză de pământ cu rezistență sub 100 Ω este suficientă dacă ai DDR de 30 mA pe toate circuitele. Idealul conform PE 102 este sub 4 Ω pentru priză de pământ a postului de transformare, și sub 1 Ω dacă nulul se leagă la priză.
+</div>
+
+<h2><span class="step-number">3</span> Alege tipul de electrozi</h2>
+
+<h3>Electrod vertical (cruce sau țeavă)</h3>
+<p>Cel mai frecvent folosit. Tipic: electrod din oțel zincat cu profil cruce 50×50×5 mm sau țeavă ∅2", lungime 2,5 – 3 m, bătut vertical în pământ. Eficient când straturile inferioare au rezistivitate mai mică (adesea cazul — mai multă umiditate în adâncime).</p>
+
+<p>Rezistența unui electrod vertical:</p>
+
+<div class="formula-box">
+  <div class="formula">R = ρ / (2π × L) × ln(4L/d)</div>
+  <div class="legend">
+    R = rezistența electrodului (Ω)<br>
+    ρ = rezistivitatea solului (Ω·m)<br>
+    L = lungimea electrodului (m)<br>
+    d = diametrul (sau latura) electrodului (m)
+  </div>
+</div>
+
+<h3>Electrod orizontal (bandă sau platbandă)</h3>
+<p>Bandă de oțel zincat 40×4 mm sau conductor din cupru gol 50 mm², îngropat la minim 0,6 – 0,8 m adâncime. Se folosește în jurul fundației clădirii (priză de pământ tip inel) sau ca legătură între electrozii verticali.</p>
+
+<h3>Priză de pământ naturală — fundația</h3>
+<p>Armătura fundației din beton poate servi ca priză de pământ naturală, conform I7-2011. Condiție: betonul trebuie să fie în contact direct cu solul (fără hidroizolație pe suprafața de contact) și armătura trebuie interconectată electric. Se recomandă înglobarea unei platbande de oțel zincat 30×3,5 mm în fundație, cu ieșiri pentru conectare.</p>
+
+<h2><span class="step-number">4</span> Calculează și configurează</h2>
+
+<p>Exemplu practic: ai un sol argilos cu ρ = 80 Ω·m și ai nevoie de o rezistență sub 10 Ω.</p>
+
+<p><strong>Un electrod vertical</strong> de 3 m lungime, profil cruce 50 mm: R ≈ 80 / (2 × 3,14 × 3) × ln(4×3/0,05) ≈ 4,24 × ln(240) ≈ 4,24 × 5,48 ≈ <strong>23,2 Ω</strong>. Un electrod nu ajunge — trebuie mai mulți.</p>
+
+<p><strong>Trei electrozi verticali</strong> legați în paralel, la distanță de minim 6 m între ei (de 2× lungimea electrodului): R ≈ 23,2 / (3 × η), unde η este factorul de utilizare (≈ 0,78 pentru 3 electrozi la distanță 2L). R ≈ 23,2 / (3 × 0,78) ≈ <strong>9,9 Ω</strong>. Satisfăcut.</p>
+
+<div class="info-box tip">
+<strong>💡 Regulă empirică:</strong> Distanța între electrozii verticali trebuie să fie cel puțin egală cu dublu lungimea lor (pentru electrozi de 3m → minim 6m distanță). Dacă sunt prea apropiați, se influențează reciproc și factorul de utilizare scade drastic.
+</div>
+
+<h2><span class="step-number">5</span> Execuție și conexiuni</h2>
+
+<p>Electrozii verticali se bat cu ciocanul pneumatic sau manual, protejând capul electrodului cu o bucșă metalică. Se conectează între ei cu bandă de oțel zincat 40×4 mm, sudate sau prinse cu cleme omologate. Toate sudurile se protejează anticoroziv cu bitum sau vopsea epoxidică.</p>
+
+<p>Conexiunea la instalația electrică se face prin conductorul PE sau PEN, printr-o piesă de separație (bornă de separație) montată accesibil pentru măsurători. Această bornă permite deconectarea prizei de pământ pentru măsurarea rezistenței fără influența instalației.</p>
+
+<div class="info-box warning">
+<strong>⚠️ Atenție:</strong> Nu folosi niciodată conductorul de nul (N) ca priză de pământ. Conductorul de protecție (PE) trebuie să aibă o conexiune proprie la priza de pământ, separată de nulul de lucru.
+</div>
+
+<h2><span class="step-number">6</span> Verificare cu tellurometrul</h2>
+
+<p>După execuție, măsori rezistența de dispersie cu un tellurometru (aparat de măsurat rezistența de pământ). Metoda standard — „căderea de potențial" (metoda celor 62%): se introduc doi electrozi auxiliari în linie dreaptă cu priza de pământ. Electrodul de curent la distanță mare (min 5× diagonala prizei, uzual 30-50m), electrodul de potențial la 62% din distanță.</p>
+
+<p>Se fac 3 măsurători deplasând electrodul de potențial ±10% și se verifică stabilitatea valorii. Dacă variază puțin (sub 5%), măsurătoarea este validă. Dacă variază mult, electrozii auxiliari sunt prea aproape — se mărește distanța.</p>
+
+<p>Măsurătoarea se face în condiții nefavorabile: perioadă secetoasă, sol uscat. Rezistența măsurată în aceste condiții este maximul pe care îl vei avea — dacă e sub limita admisă, ești în siguranță tot anul.</p>
+
+<div class="cta-box">
+  <h3>⚡ Întrebări din PE 102 la examenul ANRE</h3>
+  <p>50 de întrebări despre prize de pământ, rezistivitate, scheme de legare la pământ și verificări.</p>
+  <a href="../app.html" class="cta-btn">Exersează acum →</a>
+</div>
+
+</div>
+</section>
+
+<section class="related">
+<div class="related-inner">
+  <h2>Articole similare</h2>
+  <div class="related-grid">
+    <a href="ghid-complet-ddr.html" class="related-card" style="text-decoration:none;">
+      <h3>Ghid complet DDR — tipuri A, AC, B, F</h3>
+      <p>8 min · Normative</p>
+    </a>
+    <a href="zone-baie-greseli-frecvente.html" class="related-card" style="text-decoration:none;">
+      <h3>Zonele din baie — 5 greșeli frecvente</h3>
+      <p>7 min · Studiu de caz</p>
+    </a>
+  </div>
+</div>
+</section>
+
+<footer><div class="footer-simple"><span>© 2026 <a href="../index.html">sub-tensiune.ro</a></span><span>Realizat cu ⚡ pentru electricienii din România</span></div></footer>
+<div class="hazard-stripe"></div>
+</body>
+</html>

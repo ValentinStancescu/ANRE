@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="description" content="Ce s-a schimbat în Ordinul 66/2023 față de versiunea anterioară. Ghid complet cu noile condiții de autorizare ANRE pentru electricieni.">
+<title>Ce s-a schimbat în Ordinul 66/2023 — sub-tensiune.ro</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0a0a;--surface:#111;--card:#161616;--card2:#1c1c1c;--border:#2a2a2a;--border2:#333;--text:#c8c8c8;--muted:#777;--heading:#f5f5f5;--volt:#fbbf24;--volt-dim:rgba(251,191,36,.08);--volt-glow:rgba(251,191,36,.3);--danger:#ef4444;--blue:#38bdf8;--green:#4ade80;--radius:12px;--max-w:760px;--font:'Outfit',sans-serif;--mono:'JetBrains Mono',monospace;}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;}
+a{color:var(--volt);text-decoration:none;transition:.2s;}
+a:hover{color:#fde68a;}
+
+.hazard-stripe{height:4px;background:repeating-linear-gradient(-45deg,var(--volt) 0,var(--volt) 8px,var(--bg) 8px,var(--bg) 16px);}
+nav{position:sticky;top:0;z-index:999;background:rgba(10,10,10,.92);backdrop-filter:blur(20px) saturate(1.3);border-bottom:1px solid var(--border);}
+.nav-inner{max-width:1120px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:60px;}
+.nav-logo{font-family:var(--mono);font-size:17px;font-weight:700;color:var(--heading);display:flex;align-items:center;gap:10px;letter-spacing:-.3px;}
+.nav-logo .bolt{width:28px;height:28px;background:var(--volt);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:16px;color:#000;}
+.nav-logo .dash{color:var(--volt);}
+.nav-links{display:flex;gap:24px;align-items:center;}
+.nav-links a{color:var(--muted);font-size:13px;font-weight:500;}
+.nav-links a:hover{color:var(--heading);}
+.nav-cta{background:var(--volt);color:#000;padding:8px 18px;border-radius:8px;font-weight:700;font-size:12px;letter-spacing:.4px;font-family:var(--mono);transition:.2s;border:none;cursor:pointer;text-transform:uppercase;}
+.nav-cta:hover{background:#fde68a;}
+.menu-toggle{display:none;background:none;border:none;color:var(--heading);font-size:24px;cursor:pointer;}
+
+/* ARTICLE */
+.article-header{padding:80px 24px 40px;}
+.article-header-inner{max-width:var(--max-w);margin:0 auto;}
+.breadcrumb{font-family:var(--mono);font-size:11px;color:var(--muted);margin-bottom:20px;letter-spacing:.5px;}
+.breadcrumb a{color:var(--muted);}
+.breadcrumb a:hover{color:var(--volt);}
+.article-cat{font-family:var(--mono);font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:1px;padding:4px 12px;border-radius:4px;display:inline-block;margin-bottom:16px;}
+.article-header h1{font-size:clamp(28px,5vw,40px);font-weight:900;color:var(--heading);letter-spacing:-1px;line-height:1.15;margin-bottom:16px;}
+.article-meta{font-family:var(--mono);font-size:12px;color:var(--muted);display:flex;gap:20px;flex-wrap:wrap;}
+
+.article-body{padding:0 24px 80px;}
+.article-content{max-width:var(--max-w);margin:0 auto;}
+.article-content h2{font-size:24px;font-weight:800;color:var(--heading);margin:48px 0 16px;letter-spacing:-.3px;padding-left:16px;border-left:3px solid var(--volt);}
+.article-content h3{font-size:18px;font-weight:700;color:var(--heading);margin:32px 0 12px;}
+.article-content p{font-size:16px;color:var(--text);line-height:1.8;margin-bottom:20px;}
+.article-content strong{color:var(--heading);}
+.article-content ul,.article-content ol{margin:0 0 20px 24px;}
+.article-content li{font-size:15px;line-height:1.7;margin-bottom:8px;}
+
+.info-box{
+  background:var(--volt-dim);border:1px solid rgba(251,191,36,.15);border-radius:var(--radius);
+  padding:20px 24px;margin:24px 0;font-size:14px;line-height:1.7;
+}
+.info-box strong{color:var(--volt);}
+.info-box.warning{background:rgba(239,68,68,.06);border-color:rgba(239,68,68,.15);}
+.info-box.warning strong{color:var(--danger);}
+.info-box.tip{background:rgba(74,222,128,.06);border-color:rgba(74,222,128,.15);}
+.info-box.tip strong{color:var(--green);}
+
+.comparison-table{width:100%;border-collapse:collapse;margin:24px 0;font-size:14px;}
+.comparison-table th{text-align:left;padding:12px 16px;background:var(--card);color:var(--heading);font-weight:700;border-bottom:2px solid var(--volt);font-size:13px;}
+.comparison-table td{padding:12px 16px;border-bottom:1px solid var(--border);vertical-align:top;}
+.comparison-table tr:hover td{background:var(--card);}
+
+.cta-box{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+  padding:32px;margin:40px 0;text-align:center;
+}
+.cta-box h3{font-size:20px;font-weight:800;color:var(--heading);margin-bottom:8px;}
+.cta-box p{font-size:14px;color:var(--muted);margin-bottom:20px;}
+.cta-btn{
+  display:inline-block;background:var(--volt);color:#000;padding:12px 28px;border-radius:10px;
+  font-weight:700;font-size:14px;transition:.2s;
+}
+.cta-btn:hover{background:#fde68a;transform:translateY(-2px);box-shadow:0 8px 30px var(--volt-glow);color:#000;}
+
+/* RELATED */
+.related{padding:0 24px 80px;}
+.related-inner{max-width:var(--max-w);margin:0 auto;}
+.related h2{font-size:20px;font-weight:800;color:var(--heading);margin-bottom:20px;}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.related-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;transition:.3s;}
+.related-card:hover{border-color:rgba(251,191,36,.15);transform:translateY(-2px);}
+.related-card h3{font-size:14px;font-weight:700;color:var(--heading);margin-bottom:6px;line-height:1.4;}
+.related-card p{font-size:12px;color:var(--muted);font-family:var(--mono);}
+
+footer{border-top:1px solid var(--border);padding:32px 24px;}
+.footer-simple{max-width:1120px;margin:0 auto;display:flex;justify-content:space-between;font-size:12px;color:var(--muted);font-family:var(--mono);}
+.footer-simple a{color:var(--muted);}
+.footer-simple a:hover{color:var(--volt);}
+
+@media(max-width:700px){
+  .nav-links{display:none;position:absolute;top:60px;left:0;right:0;background:rgba(10,10,10,.97);flex-direction:column;padding:20px 24px;gap:16px;border-bottom:1px solid var(--border);}
+  .nav-links.open{display:flex;}
+  .menu-toggle{display:block;}
+  .article-header{padding:60px 24px 28px;}
+  .related-grid{grid-template-columns:1fr;}
+  .comparison-table{font-size:12px;}
+  .comparison-table th,.comparison-table td{padding:8px 10px;}
+  .footer-simple{flex-direction:column;gap:8px;text-align:center;}
+}
+</style>
+</head>
+<body>
+
+<div class="hazard-stripe"></div>
+<nav>
+<div class="nav-inner">
+  <a href="../index.html" class="nav-logo"><span class="bolt">⚡</span>sub<span class="dash">-</span>tensiune<span style="color:var(--muted);font-weight:400">.ro</span></a>
+  <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
+  <div class="nav-links">
+    <a href="../index.html#features">Funcții</a>
+    <a href="../blog.html">Blog</a>
+    <a href="../index.html#resurse">Resurse</a>
+    <a href="../index.html#preturi">Prețuri</a>
+    <button class="nav-cta" onclick="window.location.href='../app.html'">Începe gratuit →</button>
+  </div>
+</div>
+</nav>
+
+<section class="article-header">
+<div class="article-header-inner">
+  <div class="breadcrumb"><a href="../index.html">Acasă</a> / <a href="../blog.html">Blog</a> / Ordinul 66/2023</div>
+  <span class="article-cat" style="background:rgba(251,191,36,.1);color:var(--volt);">Legislație</span>
+  <h1>Ce s-a schimbat în Ordinul 66/2023 față de versiunea anterioară — ghid complet</h1>
+  <div class="article-meta">
+    <span>📅 20 Ianuarie 2026</span>
+    <span>⏱️ 12 min citire</span>
+    <span>👁️ 2.847 cititori</span>
+  </div>
+</div>
+</section>
+
+<section class="article-body">
+<div class="article-content">
+
+<p>Ordinul ANRE nr. 66/2023 privind aprobarea Regulamentului pentru autorizarea electricienilor a intrat în vigoare la 1 ianuarie 2024 și înlocuiește Ordinul 11/2013. Dacă te pregătești pentru examenul ANRE sau îți reînnoiești legitimația, trebuie să cunoști diferențele. Acest articol trece prin toate modificările relevante.</p>
+
+<h2>1. Restructurarea gradelor de autorizare</h2>
+
+<p>Cea mai vizibilă schimbare este reorganizarea gradelor de autorizare. Sistemul anterior avea patru grade (I, II, III, IV), fiecare cu subgrupuri (A, B, C). Ordinul 66/2023 păstrează structura dar aduce clarificări importante privind competențele asociate fiecărui grad.</p>
+
+<p>Gradul IIIA — cel mai cerut pe piață — rămâne gradul de bază pentru instalații electrice de joasă tensiune până la 1 kV. Dar acum sunt detaliate explicit tipurile de lucrări permise: proiectare, execuție, verificare la punerea în funcțiune și exploatare pentru instalații electrice interioare și exterioare de joasă tensiune.</p>
+
+<div class="info-box">
+<strong>⚡ Important:</strong> Dacă ai deja legitimație emisă conform Ordinului 11/2013, aceasta rămâne valabilă până la data expirării. Nu trebuie să faci nimic suplimentar. La reînnoire, se aplică noile condiții.
+</div>
+
+<h2>2. Condiții de studii și experiență profesională</h2>
+
+<p>Ordinul 66/2023 menține cerințele generale de studii, dar aduce precizări privind experiența profesională minimă necesară pentru fiecare grad. Pentru gradul IIIA, cerințele sunt:</p>
+
+<table class="comparison-table">
+<thead>
+<tr><th>Criteriu</th><th>Ordinul 11/2013</th><th>Ordinul 66/2023</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>Studii minime</strong></td><td>Calificare profesională nivel 3 în domeniu</td><td>Calificare profesională nivel 3 în domeniul electric</td></tr>
+<tr><td><strong>Experiență grad IIIA</strong></td><td>2 ani activitate practică</td><td>2 ani activitate practică documentată</td></tr>
+<tr><td><strong>Studii superioare</strong></td><td>Scutire parțială de experiență</td><td>Absolvirea unui program universitar de licență în inginerie electrică reduce cerința la 1 an</td></tr>
+<tr><td><strong>Documente doveditoare</strong></td><td>Adeverință de la angajator</td><td>Adeverință detaliată + portofoliu de lucrări (recomandat)</td></tr>
+</tbody>
+</table>
+
+<p>Cuvântul cheie nou este <strong>„documentată"</strong>. ANRE poate solicita acum dovezi concrete ale activității practice, nu doar o adeverință generică de la angajator. Recomandarea este să păstrezi un portofoliu cu tipurile de lucrări executate, fotografii, procese verbale de recepție.</p>
+
+<h2>3. Examenul de autorizare — ce s-a schimbat</h2>
+
+<p>Structura examenului rămâne similară: un test grilă din normativele tehnice aplicabile gradului solicitat. Dar Ordinul 66/2023 aduce câteva modificări procedurale:</p>
+
+<p><strong>Frecvența sesiunilor.</strong> ANRE organizează sesiuni de examinare cel puțin o dată pe trimestru (anterior era „periodic, conform necesităților"). Aceasta oferă mai multă predictibilitate candidaților.</p>
+
+<p><strong>Normativele de examen.</strong> Pentru gradul IIIA, normativele de referință rămân aceleași: I7-2011 (normativul principal), Legea energiei electrice 123/2012, Ordinul 66/2023 însuși, ordinele privind racordarea (59/2013, 102/2015), și normativele PE 102 și PE 155. Atenție însă: conținutul întrebărilor se actualizează periodic.</p>
+
+<p><strong>Nota de trecere.</strong> Rămâne minimul de 70% răspunsuri corecte. La un test de 60 de întrebări, trebuie minimum 42 de răspunsuri corecte.</p>
+
+<div class="info-box tip">
+<strong>💡 Sfat:</strong> Cele 600 de întrebări din aplicația sub-tensiune.ro acoperă toate cele 7 normative cerute la examenul de grad IIIA. <a href="../app.html">Începe pregătirea aici →</a>
+</div>
+
+<h2>4. Perfecționare profesională continuă</h2>
+
+<p>Aceasta este probabil cea mai importantă noutate. Ordinul 66/2023 introduce explicit obligația de perfecționare profesională continuă pentru menținerea autorizației. Anterior, acest lucru era menționat vag; acum are cadru concret.</p>
+
+<p>Electricienii autorizați trebuie să facă dovada participării la programe de perfecționare profesională pe durata de valabilitate a legitimației (5 ani). Formele acceptate includ cursuri de specialitate organizate de centre de formare acreditate, participarea la conferințe și seminarii tehnice de profil, și activitate profesională continuă documentată.</p>
+
+<p>La momentul reînnoirii legitimației, ANRE poate verifica dacă ai îndeplinit aceste cerințe. Lipsa dovezilor de perfecționare poate duce la necesitatea susținerii unui nou examen, chiar dacă legitimația anterioară era în termen.</p>
+
+<h2>5. Suspendarea și retragerea autorizației</h2>
+
+<p>Ordinul 66/2023 detaliază mai clar cazurile în care ANRE poate suspenda sau retrage autorizația unui electrician. Principalele motive sunt: nerespectarea normativelor tehnice cu consecințe grave, refuzul de a se prezenta la verificarea cunoștințelor când este solicitat, condamnare penală pentru fapte legate de exercitarea profesiei, și pierderea condițiilor de studii sau experiență care au stat la baza autorizării.</p>
+
+<div class="info-box warning">
+<strong>⚠️ Atenție:</strong> Executarea de lucrări electrice fără autorizație ANRE valabilă constituie contravenție conform Legii 123/2012 și se sancționează cu amendă de la 5.000 la 50.000 lei.
+</div>
+
+<h2>6. Dosarul de autorizare — lista completă de documente</h2>
+
+<p>Pentru depunerea dosarului de autorizare conform Ordinului 66/2023, sunt necesare următoarele documente: cererea de autorizare (formularul tip de pe site-ul ANRE), copie act de identitate, copie diplomă sau certificat de calificare profesională în domeniul electric, adeverință de experiență profesională de la angajator (cu detalierea tipurilor de lucrări efectuate), certificat de cazier judiciar (valabil 6 luni), adeverință medicală care atestă aptitudinea pentru exercitarea activităților în instalații electrice, și dovada achitării taxei de autorizare.</p>
+
+<p>Taxa de autorizare este stabilită anual prin decizie ANRE. Verifică suma actualizată pe site-ul oficial înainte de depunerea dosarului.</p>
+
+<h2>7. Ce recomandăm</h2>
+
+<p>Dacă te pregătești acum pentru examenul ANRE, ordinul 66/2023 nu schimbă dramatic conținutul tehnic pe care trebuie să-l știi. I7-2011 rămâne coloana vertebrală a examenului. Ce se schimbă este cadrul administrativ: dosarul trebuie mai complet, experiența trebuie documentată mai bine, iar după obținerea legitimației ai obligația de perfecționare continuă.</p>
+
+<p>Concentrează-te pe înțelegerea normativelor, nu pe memorarea mecanică a articolelor. Examenul testează dacă poți aplica regulile în situații practice, nu dacă poți recita paragrafe.</p>
+
+<div class="cta-box">
+  <h3>⚡ Pregătit pentru examen?</h3>
+  <p>600 de întrebări din toate cele 7 normative, cu explicații detaliate și mod examen simulat.</p>
+  <a href="../app.html" class="cta-btn">Începe pregătirea gratuit →</a>
+</div>
+
+</div>
+</section>
+
+<section class="related">
+<div class="related-inner">
+  <h2>Articole similare</h2>
+  <div class="related-grid">
+    <a href="cum-devii-electrician-autorizat-anre.html" class="related-card" style="text-decoration:none;">
+      <h3>Cum devii electrician autorizat ANRE — pașii compleți pentru 2026</h3>
+      <p>15 min · Ghid Practic</p>
+    </a>
+    <a href="ghid-complet-ddr.html" class="related-card" style="text-decoration:none;">
+      <h3>Ghid complet DDR — tipuri A, AC, B, F</h3>
+      <p>8 min · Normative</p>
+    </a>
+  </div>
+</div>
+</section>
+
+<footer><div class="footer-simple"><span>© 2026 <a href="../index.html">sub-tensiune.ro</a></span><span>Realizat cu ⚡ pentru electricienii din România</span></div></footer>
+<div class="hazard-stripe"></div>
+</body>
+</html>

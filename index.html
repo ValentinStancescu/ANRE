@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="description" content="sub-tensiune.ro — Pregătire examen ANRE, blog tehnic, normative electrice. Platforma electricienilor din România.">
+<title>sub-tensiune.ro — Rămâi sub tensiune.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0a0a0a;
+  --surface: #111111;
+  --card: #161616;
+  --card2: #1c1c1c;
+  --border: #2a2a2a;
+  --border2: #333;
+  --text: #c8c8c8;
+  --muted: #777;
+  --heading: #f5f5f5;
+  --volt: #fbbf24;
+  --volt2: #f59e0b;
+  --volt-dim: rgba(251,191,36,.08);
+  --volt-glow: rgba(251,191,36,.3);
+  --danger: #ef4444;
+  --blue: #38bdf8;
+  --green: #4ade80;
+  --radius: 12px;
+  --max-w: 1120px;
+  --font: 'Outfit',sans-serif;
+  --mono: 'JetBrains Mono',monospace;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;}
+a{color:var(--volt);text-decoration:none;transition:.2s;}
+a:hover{color:#fde68a;}
+
+/* ========== HAZARD STRIPE ========== */
+.hazard-stripe{
+  height:4px;
+  background:repeating-linear-gradient(
+    -45deg,
+    var(--volt) 0,var(--volt) 8px,
+    var(--bg) 8px,var(--bg) 16px
+  );
+}
+
+/* ========== NAV ========== */
+nav{
+  position:sticky;top:0;z-index:999;
+  background:rgba(10,10,10,.92);backdrop-filter:blur(20px) saturate(1.3);
+  border-bottom:1px solid var(--border);
+}
+.nav-inner{
+  max-width:var(--max-w);margin:0 auto;padding:0 24px;
+  display:flex;align-items:center;justify-content:space-between;height:60px;
+}
+.nav-logo{
+  font-family:var(--mono);font-size:17px;font-weight:700;color:var(--heading);
+  display:flex;align-items:center;gap:10px;letter-spacing:-.3px;
+}
+.nav-logo .bolt{
+  width:28px;height:28px;background:var(--volt);border-radius:6px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:16px;line-height:1;color:#000;font-weight:800;
+}
+.nav-logo .dash{color:var(--volt);}
+.nav-links{display:flex;gap:24px;align-items:center;}
+.nav-links a{color:var(--muted);font-size:13px;font-weight:500;letter-spacing:.2px;}
+.nav-links a:hover{color:var(--heading);}
+.nav-cta{
+  background:var(--volt);color:#000;padding:8px 18px;border-radius:8px;
+  font-weight:700;font-size:12px;letter-spacing:.4px;font-family:var(--mono);
+  transition:.2s;border:none;cursor:pointer;text-transform:uppercase;
+}
+.nav-cta:hover{background:#fde68a;transform:translateY(-1px);box-shadow:0 4px 20px var(--volt-glow);}
+.menu-toggle{display:none;background:none;border:none;color:var(--heading);font-size:24px;cursor:pointer;padding:4px;}
+
+/* ========== HERO ========== */
+.hero{
+  position:relative;overflow:hidden;
+  padding:100px 24px 90px;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 60% 40% at 20% 0%,rgba(251,191,36,.05),transparent 60%),
+    radial-gradient(ellipse 40% 50% at 80% 20%,rgba(251,191,36,.03),transparent 50%);
+  pointer-events:none;
+}
+.hero::after{
+  content:'';position:absolute;inset:0;
+  background:
+    repeating-linear-gradient(90deg,rgba(255,255,255,.012) 0,rgba(255,255,255,.012) 1px,transparent 1px,transparent 70px),
+    repeating-linear-gradient(0deg,rgba(255,255,255,.012) 0,rgba(255,255,255,.012) 1px,transparent 1px,transparent 70px);
+  pointer-events:none;
+}
+.hero-inner{max-width:var(--max-w);margin:0 auto;position:relative;z-index:1;}
+
+.hero-tag{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--mono);font-size:11px;font-weight:600;color:var(--volt);
+  letter-spacing:1px;text-transform:uppercase;margin-bottom:28px;
+  opacity:0;animation:fadeUp .5s .1s forwards;
+}
+.hero-tag .pulse{
+  width:7px;height:7px;border-radius:50%;background:var(--volt);
+  box-shadow:0 0 8px var(--volt-glow);animation:blink 2s infinite;
+}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+
+.hero h1{
+  font-size:clamp(40px,7vw,72px);font-weight:900;line-height:1.05;
+  color:var(--heading);letter-spacing:-2px;max-width:680px;margin-bottom:24px;
+  opacity:0;animation:fadeUp .6s .2s forwards;
+}
+.hero h1 .highlight{
+  color:var(--volt);position:relative;display:inline-block;
+}
+.hero h1 .highlight::after{
+  content:'';position:absolute;bottom:4px;left:-4px;right:-4px;height:4px;
+  background:var(--volt);border-radius:2px;opacity:.3;
+}
+
+.hero-sub{
+  font-size:17px;color:var(--muted);max-width:500px;line-height:1.7;margin-bottom:40px;
+  opacity:0;animation:fadeUp .6s .35s forwards;
+}
+
+.hero-actions{
+  display:flex;gap:14px;flex-wrap:wrap;
+  opacity:0;animation:fadeUp .6s .45s forwards;
+}
+.btn-primary{
+  background:var(--volt);color:#000;padding:14px 30px;border-radius:10px;
+  font-weight:800;font-size:15px;display:inline-flex;align-items:center;gap:10px;
+  transition:.25s;border:none;cursor:pointer;font-family:var(--font);
+}
+.btn-primary:hover{background:#fde68a;transform:translateY(-2px);box-shadow:0 8px 32px var(--volt-glow);color:#000;}
+.btn-primary .mono{font-family:var(--mono);font-size:11px;opacity:.6;letter-spacing:.5px;}
+.btn-secondary{
+  background:transparent;color:var(--text);padding:14px 26px;border-radius:10px;
+  font-weight:600;font-size:15px;border:1px solid var(--border2);
+  display:inline-flex;align-items:center;gap:8px;
+  transition:.25s;cursor:pointer;font-family:var(--font);
+}
+.btn-secondary:hover{border-color:var(--muted);transform:translateY(-1px);color:var(--heading);}
+
+.hero-stats{
+  display:flex;gap:48px;margin-top:60px;padding-top:32px;
+  border-top:1px solid var(--border);
+  opacity:0;animation:fadeUp .6s .55s forwards;
+}
+.hero-stat .val{font-family:var(--mono);font-size:30px;font-weight:800;color:var(--volt);}
+.hero-stat .label{font-size:12px;color:var(--muted);margin-top:2px;letter-spacing:.2px;}
+
+/* ========== SECTIONS ========== */
+.section-label{
+  font-family:var(--mono);font-size:11px;font-weight:700;
+  color:var(--volt);text-transform:uppercase;letter-spacing:2px;margin-bottom:12px;
+}
+.section-title{
+  font-size:clamp(26px,4vw,38px);font-weight:800;color:var(--heading);
+  letter-spacing:-.5px;margin-bottom:48px;line-height:1.2;
+}
+
+/* ========== FEATURES ========== */
+.features{padding:90px 24px;}
+.features-inner{max-width:var(--max-w);margin:0 auto;}
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+.feat-card{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+  padding:28px 24px;transition:.3s;position:relative;overflow:hidden;
+}
+.feat-card::after{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:var(--volt);transform:scaleX(0);transition:.3s;transform-origin:left;
+}
+.feat-card:hover{border-color:rgba(251,191,36,.15);transform:translateY(-3px);box-shadow:0 16px 48px rgba(0,0,0,.4);}
+.feat-card:hover::after{transform:scaleX(1);}
+.feat-icon{
+  width:40px;height:40px;border-radius:10px;background:var(--volt-dim);
+  display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:16px;
+  border:1px solid rgba(251,191,36,.1);
+}
+.feat-card h3{font-size:15px;font-weight:700;color:var(--heading);margin-bottom:8px;}
+.feat-card p{font-size:13px;color:var(--muted);line-height:1.65;}
+
+/* ========== BLOG ========== */
+.blog-section{padding:90px 24px;background:var(--surface);}
+.blog-inner{max-width:var(--max-w);margin:0 auto;}
+.blog-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.blog-featured{
+  grid-column:1/-1;
+  background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+  padding:40px;display:grid;grid-template-columns:1.2fr 1fr;gap:36px;align-items:center;
+  transition:.3s;
+}
+.blog-featured:hover{border-color:rgba(251,191,36,.15);}
+.bf-cat{font-family:var(--mono);font-size:11px;font-weight:600;color:var(--volt);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;}
+.bf-title{font-size:22px;font-weight:800;color:var(--heading);line-height:1.3;margin-bottom:12px;}
+.bf-excerpt{font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:16px;}
+.bf-meta{font-size:11px;color:var(--muted);font-family:var(--mono);}
+.bf-visual{
+  background:linear-gradient(135deg,var(--card2),var(--bg));
+  border-radius:10px;aspect-ratio:16/10;display:flex;align-items:center;justify-content:center;
+  font-size:56px;border:1px solid var(--border);position:relative;overflow:hidden;
+}
+.bf-visual::before{
+  content:'';position:absolute;inset:0;
+  background:repeating-linear-gradient(-45deg,rgba(251,191,36,.03) 0,rgba(251,191,36,.03) 1px,transparent 1px,transparent 12px);
+}
+
+.blog-card{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+  padding:24px;transition:.3s;
+}
+.blog-card:hover{border-color:rgba(251,191,36,.15);transform:translateY(-2px);}
+.bc-cat{
+  font-family:var(--mono);font-size:10px;font-weight:600;
+  text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;padding:3px 10px;
+  border-radius:4px;display:inline-block;
+}
+.bc-norme{background:rgba(56,189,248,.1);color:var(--blue);}
+.bc-ghid{background:rgba(74,222,128,.1);color:var(--green);}
+.bc-lege{background:rgba(251,191,36,.1);color:var(--volt);}
+.bc-caz{background:rgba(239,68,68,.1);color:var(--danger);}
+.blog-card h3{font-size:15px;font-weight:700;color:var(--heading);line-height:1.4;margin-bottom:8px;}
+.blog-card p{font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:12px;}
+.blog-card .bc-meta{font-size:10px;color:var(--muted);font-family:var(--mono);opacity:.7;}
+.blog-more{text-align:center;margin-top:32px;}
+
+/* ========== RESOURCES ========== */
+.resources{padding:90px 24px;}
+.resources-inner{max-width:var(--max-w);margin:0 auto;}
+.res-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
+.res-card{
+  background:var(--card);border:1px solid var(--border);border-radius:10px;
+  padding:20px 16px;text-align:center;transition:.3s;cursor:pointer;
+}
+.res-card:hover{border-color:var(--volt);transform:translateY(-2px);background:var(--card2);}
+.res-icon{font-size:28px;margin-bottom:10px;}
+.res-card h4{font-size:13px;font-weight:700;color:var(--heading);margin-bottom:4px;}
+.res-card p{font-size:11px;color:var(--muted);line-height:1.4;font-family:var(--mono);}
+
+/* ========== PRICING ========== */
+.pricing{padding:90px 24px;background:var(--surface);}
+.pricing-inner{max-width:var(--max-w);margin:0 auto;}
+.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;align-items:start;}
+.price-card{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+  padding:32px 28px;transition:.3s;
+}
+.price-card:hover{transform:translateY(-3px);}
+.price-card.featured{
+  border-color:var(--volt);position:relative;
+  box-shadow:0 0 40px rgba(251,191,36,.06);
+}
+.price-card.featured::before{
+  content:'POPULAR';position:absolute;top:-12px;left:50%;transform:translateX(-50%);
+  background:var(--volt);color:#000;font-family:var(--mono);font-size:10px;font-weight:800;
+  padding:4px 14px;border-radius:20px;letter-spacing:1px;
+}
+.price-card h3{font-size:20px;font-weight:800;color:var(--heading);margin-bottom:4px;}
+.price-desc{font-size:13px;color:var(--muted);margin-bottom:20px;}
+.price-amount{font-family:var(--mono);font-size:42px;font-weight:800;color:var(--heading);}
+.price-amount span{font-size:16px;color:var(--muted);font-weight:500;}
+.price-period{font-size:12px;color:var(--muted);margin-bottom:24px;font-family:var(--mono);}
+.price-features{list-style:none;margin-bottom:28px;}
+.price-features li{
+  font-size:13px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.04);
+  display:flex;align-items:center;gap:8px;
+}
+.price-features li::before{content:'✓';color:var(--volt);font-weight:700;font-size:13px;}
+.price-features li.no{color:var(--muted);opacity:.4;}
+.price-features li.no::before{content:'✕';color:var(--muted);}
+.price-btn{
+  width:100%;padding:12px;border-radius:10px;font-size:14px;font-weight:700;
+  border:none;cursor:pointer;transition:.2s;font-family:var(--font);
+}
+.price-btn-free{background:var(--card2);color:var(--text);border:1px solid var(--border2);}
+.price-btn-free:hover{border-color:var(--muted);}
+.price-btn-pro{background:var(--volt);color:#000;}
+.price-btn-pro:hover{background:#fde68a;box-shadow:0 8px 30px var(--volt-glow);}
+.price-btn-team{background:var(--card2);color:var(--text);border:1px solid var(--border2);}
+.price-btn-team:hover{border-color:var(--muted);}
+
+/* ========== NEWSLETTER ========== */
+.newsletter{padding:70px 24px;text-align:center;}
+.nl-inner{max-width:560px;margin:0 auto;}
+.newsletter h2{font-size:24px;font-weight:800;color:var(--heading);margin-bottom:8px;}
+.newsletter p{font-size:14px;color:var(--muted);margin-bottom:24px;}
+.nl-form{display:flex;gap:8px;max-width:440px;margin:0 auto;}
+.nl-form input{
+  flex:1;padding:12px 16px;border-radius:10px;border:1px solid var(--border2);
+  background:var(--card);color:var(--text);font-size:14px;font-family:var(--font);
+  outline:none;transition:.2s;
+}
+.nl-form input:focus{border-color:var(--volt);}
+.nl-form button{
+  padding:12px 24px;border-radius:10px;background:var(--volt);color:#000;
+  font-weight:700;font-size:13px;border:none;cursor:pointer;transition:.2s;
+  font-family:var(--mono);white-space:nowrap;
+}
+.nl-form button:hover{background:#fde68a;}
+
+/* ========== FOOTER ========== */
+footer{border-top:1px solid var(--border);padding:48px 24px 0;}
+.footer-inner{
+  max-width:var(--max-w);margin:0 auto;
+  display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:40px;padding-bottom:40px;
+}
+.fb-logo{
+  font-family:var(--mono);font-size:16px;font-weight:700;color:var(--heading);
+  margin-bottom:12px;display:flex;align-items:center;gap:8px;
+}
+.fb-logo .fb-bolt{
+  width:22px;height:22px;background:var(--volt);border-radius:5px;
+  display:flex;align-items:center;justify-content:center;font-size:12px;color:#000;
+}
+footer .footer-brand p{font-size:13px;color:var(--muted);line-height:1.6;max-width:280px;}
+.footer-col h4{font-family:var(--mono);font-size:11px;font-weight:700;color:var(--heading);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:14px;}
+.footer-col a{display:block;font-size:13px;color:var(--muted);padding:4px 0;transition:.2s;}
+.footer-col a:hover{color:var(--text);}
+.footer-bottom{
+  max-width:var(--max-w);margin:0 auto;padding:20px 0;
+  border-top:1px solid var(--border);
+  display:flex;justify-content:space-between;font-size:12px;color:var(--muted);
+  font-family:var(--mono);
+}
+
+/* ========== MOBILE ========== */
+@media(max-width:900px){
+  .feat-grid{grid-template-columns:1fr 1fr;}
+  .price-grid{grid-template-columns:1fr;}
+  .price-card.featured{order:-1;}
+  .res-grid{grid-template-columns:1fr 1fr;}
+  .footer-inner{grid-template-columns:1fr 1fr;gap:28px;}
+}
+@media(max-width:700px){
+  .nav-links{display:none;position:absolute;top:60px;left:0;right:0;background:rgba(10,10,10,.97);flex-direction:column;padding:20px 24px;gap:16px;border-bottom:1px solid var(--border);}
+  .nav-links.open{display:flex;}
+  .menu-toggle{display:block;}
+  .hero{padding:70px 24px 60px;}
+  .hero h1{font-size:clamp(32px,8vw,48px);}
+  .hero-stats{flex-wrap:wrap;gap:24px;}
+  .hero-stat{min-width:100px;}
+  .feat-grid{grid-template-columns:1fr;}
+  .blog-grid{grid-template-columns:1fr;}
+  .blog-featured{grid-template-columns:1fr;padding:28px;}
+  .bf-visual{display:none;}
+  .res-grid{grid-template-columns:1fr 1fr;}
+  .nl-form{flex-direction:column;}
+  .footer-inner{grid-template-columns:1fr;gap:24px;}
+  .footer-bottom{flex-direction:column;gap:6px;text-align:center;}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== HAZARD STRIPE ===== -->
+<div class="hazard-stripe"></div>
+
+<!-- ===== NAV ===== -->
+<nav>
+<div class="nav-inner">
+  <a href="/" class="nav-logo">
+    <span class="bolt">⚡</span>
+    sub<span class="dash">-</span>tensiune<span style="color:var(--muted);font-weight:400">.ro</span>
+  </a>
+  <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">☰</button>
+  <div class="nav-links">
+    <a href="#features">Funcții</a>
+    <a href="blog.html">Blog</a>
+    <a href="#resurse">Resurse</a>
+    <a href="#preturi">Prețuri</a>
+    <button class="nav-cta" onclick="window.location.href='app.html'">Începe gratuit →</button>
+  </div>
+</div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+<div class="hero-inner">
+  <div class="hero-tag"><span class="pulse"></span> Actualizat Februarie 2026</div>
+  <h1>Rămâi<br><span class="highlight">sub tensiune.</span></h1>
+  <p class="hero-sub">600 de întrebări ANRE cu explicații, blog tehnic și resurse practice. Tot ce ai nevoie ca să treci examenul și să rămâi conectat la profesie.</p>
+  <div class="hero-actions">
+    <button class="btn-primary" onclick="window.location.href='app.html'">⚡ Începe pregătirea <span class="mono">GRATUIT</span></button>
+    <button class="btn-secondary" onclick="document.getElementById('blog').scrollIntoView({behavior:'smooth'})">Citește articole →</button>
+  </div>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="val">600</div><div class="label">Întrebări verificate</div></div>
+    <div class="hero-stat"><div class="val">7</div><div class="label">Normative acoperite</div></div>
+    <div class="hero-stat"><div class="val">93%</div><div class="label">Rata de promovare</div></div>
+    <div class="hero-stat"><div class="val">IIIA</div><div class="label">Grad autorizare</div></div>
+  </div>
+</div>
+</section>
+
+<!-- ===== FEATURES ===== -->
+<section class="features" id="features">
+<div class="features-inner">
+  <div class="section-label">De ce sub-tensiune</div>
+  <h2 class="section-title">Tot ce ai nevoie,<br>într-un singur loc</h2>
+  <div class="feat-grid">
+    <div class="feat-card">
+      <div class="feat-icon">🎯</div>
+      <h3>600 Întrebări cu explicații</h3>
+      <p>Fiecare întrebare are referință exactă la articol, explicație detaliată și nivel de dificultate. Acoperă I7-2011, legislație și PE-uri.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">🎓</div>
+      <h3>Mod Examen simulat</h3>
+      <p>60 de întrebări, 90 de minute, fără explicații — exact ca la examenul real ANRE. Cronometru, rezultat și review la final.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">📊</div>
+      <h3>Statistici inteligente</h3>
+      <p>Urmărește progresul pe fiecare normativ. Identifică punctele slabe și concentrează-te pe întrebările greșite anterior.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">📱</div>
+      <h3>Funcționează pe orice</h3>
+      <p>Telefon, tabletă, laptop. Fără instalare, fără cont obligatoriu. Deschide browserul și începe studiul instant.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">📰</div>
+      <h3>Blog tehnic actualizat</h3>
+      <p>Articole despre modificări legislative, interpretări normative, ghiduri practice și studii de caz din instalații reale.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">⌨️</div>
+      <h3>Taste rapide & salvare</h3>
+      <p>Răspunde cu 1/2/3, navighează cu Enter, salvează cu B. Progresul se păstrează automat în browser.</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ===== BLOG ===== -->
+<section class="blog-section" id="blog">
+<div class="blog-inner">
+  <div class="section-label">Blog Tehnic</div>
+  <h2 class="section-title">Articole pentru electricieni</h2>
+  <div class="blog-grid">
+
+    <div class="blog-featured">
+      <div>
+        <div class="bf-cat">Legislație · Ianuarie 2026</div>
+        <div class="bf-title">Ce s-a schimbat în Ordinul 66/2023 față de versiunea anterioară — ghid complet</div>
+        <div class="bf-excerpt">Noile condiții de autorizare, modificări la grade și categorii, cerințe de perfecționare continuă. Tot ce trebuie să știi dacă te pregătești pentru examen sau îți reînnoiești legitimația.</div>
+        <div class="bf-meta">12 min citire · 2.847 cititori</div>
+      </div>
+      <div class="bf-visual">📋</div>
+    </div>
+
+    <div class="blog-card">
+      <div class="bc-cat bc-norme">Normative</div>
+      <h3>Ghid complet DDR — tipuri A, AC, B, F. Când și unde le folosim?</h3>
+      <p>Diferențele dintre tipurile de DDR, obligațiile din I7-2011, cazuri practice și greșeli frecvente de alegere.</p>
+      <div class="bc-meta">8 min · 15 Feb 2026</div>
+    </div>
+
+    <div class="blog-card">
+      <div class="bc-cat bc-ghid">Ghid Practic</div>
+      <h3>Cum dimensionezi o priză de pământ — pas cu pas conform PE 102</h3>
+      <p>De la măsurarea rezistivității solului cu metoda Wenner, la alegerea electrozilor și verificarea finală.</p>
+      <div class="bc-meta">10 min · 8 Feb 2026</div>
+    </div>
+
+    <div class="blog-card">
+      <div class="bc-cat bc-lege">Legislație</div>
+      <h3>Prosumatorii în 2026: ce trebuie să știi despre racordarea PV sub 100kW</h3>
+      <p>Pași concreți, documente necesare, ATR, contor bidirecțional, protecție anti-insulare și compensare.</p>
+      <div class="bc-meta">6 min · 1 Feb 2026</div>
+    </div>
+
+    <div class="blog-card">
+      <div class="bc-cat bc-caz">Studiu de caz</div>
+      <h3>Zonele din baie — 5 greșeli frecvente la instalațiile electrice</h3>
+      <p>Am inspectat 50 de băi. Cele mai frecvente neconformități: prize în zona 1, lipsa DDR, echipotențializare absentă.</p>
+      <div class="bc-meta">7 min · 25 Ian 2026</div>
+    </div>
+
+  </div>
+  <div class="blog-more"><a href="#" class="btn-secondary">Vezi toate articolele →</a></div>
+</div>
+</section>
+
+<!-- ===== RESOURCES ===== -->
+<section class="resources" id="resurse">
+<div class="resources-inner">
+  <div class="section-label">Resurse Rapide</div>
+  <h2 class="section-title">Tabele și referințe utile</h2>
+  <div class="res-grid">
+    <div class="res-card"><div class="res-icon">🔌</div><h4>Secțiuni minime</h4><p>Tabel I7-2011</p></div>
+    <div class="res-card"><div class="res-icon">🎨</div><h4>Coduri culori</h4><p>L1/L2/L3, N, PE</p></div>
+    <div class="res-card"><div class="res-icon">⏱️</div><h4>Timpi deconectare</h4><p>TN: 0.4s · TT: 0.2s</p></div>
+    <div class="res-card"><div class="res-icon">🛡️</div><h4>Grade IP</h4><p>IP20 → IP68</p></div>
+    <div class="res-card"><div class="res-icon">📐</div><h4>Formule electrice</h4><p>P=UI, Zs×Ia≤Uo</p></div>
+    <div class="res-card"><div class="res-icon">🏗️</div><h4>Zone baie/piscină</h4><p>Zone 0/1/2</p></div>
+    <div class="res-card"><div class="res-icon">📏</div><h4>Căderi tensiune</h4><p>3% iluminat, 5% FM</p></div>
+    <div class="res-card"><div class="res-icon">✅</div><h4>Checklist</h4><p>Verificare inițială</p></div>
+  </div>
+</div>
+</section>
+
+<!-- ===== PRICING ===== -->
+<section class="pricing" id="preturi">
+<div class="pricing-inner">
+  <div class="section-label">Prețuri</div>
+  <h2 class="section-title">Alege planul potrivit</h2>
+  <div class="price-grid">
+
+    <div class="price-card">
+      <h3>Gratuit</h3>
+      <p class="price-desc">Pentru început</p>
+      <div class="price-amount">0 <span>RON</span></div>
+      <div class="price-period">pentru totdeauna</div>
+      <ul class="price-features">
+        <li>150 întrebări din toate categoriile</li>
+        <li>Mod studiu cu explicații</li>
+        <li>Statistici de bază</li>
+        <li>Acces blog complet</li>
+        <li class="no">Mod examen simulat</li>
+        <li class="no">Întrebări greșite anterior</li>
+      </ul>
+      <button class="price-btn price-btn-free">Începe gratuit</button>
+    </div>
+
+    <div class="price-card featured">
+      <h3>PRO</h3>
+      <p class="price-desc">Tot ce ai nevoie</p>
+      <div class="price-amount">79 <span>RON</span></div>
+      <div class="price-period">plată unică · acces permanent</div>
+      <ul class="price-features">
+        <li>Toate cele 600 de întrebări</li>
+        <li>Mod examen simulat (60 întrebări)</li>
+        <li>Repetare greșite + statistici avansate</li>
+        <li>Acces blog + resurse complete</li>
+        <li>Actualizări normative gratuite</li>
+        <li>Suport prioritar</li>
+      </ul>
+      <button class="price-btn price-btn-pro">Cumpără PRO ⚡</button>
+    </div>
+
+    <div class="price-card">
+      <h3>Echipă</h3>
+      <p class="price-desc">Pentru firme & cursuri</p>
+      <div class="price-amount">249 <span>RON</span></div>
+      <div class="price-period">până la 10 utilizatori</div>
+      <ul class="price-features">
+        <li>Totul din PRO × 10 conturi</li>
+        <li>Dashboard admin cu progresul echipei</li>
+        <li>Rapoarte de performanță</li>
+        <li>Facturare firmă</li>
+        <li>Logo firmă pe certificat</li>
+        <li>Suport dedicat</li>
+      </ul>
+      <button class="price-btn price-btn-team">Contactează-ne</button>
+    </div>
+
+  </div>
+</div>
+</section>
+
+<!-- ===== NEWSLETTER ===== -->
+<section class="newsletter">
+<div class="nl-inner">
+  <h2>⚡ Rămâi sub tensiune</h2>
+  <p>Modificări legislative, noutăți normative, sfaturi practice. Unul pe săptămână, fără spam.</p>
+  <div class="nl-form">
+    <input type="email" placeholder="adresa@email.com">
+    <button>Abonează-te</button>
+  </div>
+</div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+<div class="footer-inner">
+  <div class="footer-brand">
+    <div class="fb-logo"><span class="fb-bolt">⚡</span> sub-tensiune.ro</div>
+    <p>Platforma completă pentru electricienii din România. Pregătire examen ANRE, articole tehnice, normative actualizate.</p>
+  </div>
+  <div class="footer-col">
+    <h4>Platformă</h4>
+    <a href="app.html">FlashCards ANRE</a>
+    <a href="blog.html">Blog tehnic</a>
+    <a href="#resurse">Resurse & tabele</a>
+    <a href="#preturi">Prețuri</a>
+  </div>
+  <div class="footer-col">
+    <h4>Normative</h4>
+    <a href="#">I7-2011</a>
+    <a href="#">Legea 123/2012</a>
+    <a href="#">Ordinul 66/2023</a>
+    <a href="#">PE 102 & PE 155</a>
+  </div>
+  <div class="footer-col">
+    <h4>Legal</h4>
+    <a href="#">Termeni și condiții</a>
+    <a href="#">Politica de confidențialitate</a>
+    <a href="#">Politica cookies</a>
+    <a href="#">Contact</a>
+  </div>
+</div>
+<div class="footer-bottom">
+  <span>© 2026 sub-tensiune.ro — Toate drepturile rezervate.</span>
+  <span>Realizat cu ⚡ pentru electricienii din România</span>
+</div>
+</footer>
+
+<!-- ===== HAZARD STRIPE BOTTOM ===== -->
+<div class="hazard-stripe"></div>
+
+</body>
+</html>
